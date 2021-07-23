@@ -2,3 +2,61 @@
  -- https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql
  
  
+--select * from products
+
+-- set statements are session level statements.. there are several set statements are there. below is one example
+
+
+-- column as
+set rowcount 0
+
+select productname as pro_name from products
+select productname pro_name from products
+select pro_name = productname from products
+
+-- where clause
+.....
+
+-- group by 
+select * from products
+-- get which category has more number of products...
+select categoryid ,count(productname)  from products
+group by categoryid 
+order by count(productname) desc
+
+
+-- having ~ where with aggregate
+
+
+select city , sum(salary) from x
+where city='V'
+group by city
+HAVING sum(salary)  > 100
+
+/*
+create table x(city varchar(90),vname varchar(90))
+
+insert into x select 'a','a1'
+insert into x select 'a','a2'
+
+insert into x select 'g','g1'
+
+insert into x select 'v','v1'
+insert into x select 'v','v2'
+insert into x select 'v','v3'
+
+select * from x;
+
+UPDATE x set Salary = 10 where city = 'a'
+UPDATE x set Salary = 20 where city = 'g'
+UPDATE x set Salary = 50 where city = 'v'
+
+select city , count(vname) from x
+group by city;
+
+select city , sum(salary) from x
+where city='V'
+group by city
+HAVING sum(salary)  > 100
+
+*/
